@@ -45,4 +45,21 @@ router.delete("/:id", (req, res) => {
   res.send(`User with id: ${id} deleted from DBB`);
 });
 
+// @ PATCH /users/:id
+router.patch("/:id", (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, age } = req.body;
+  const userToBeUpdated = users.find((user) => user.id === id);
+  if (firstName) {
+    userToBeUpdated.firstName = firstName;
+  }
+  if (lastName) {
+    userToBeUpdated.lastName = lastName;
+  }
+  if (age) {
+    userToBeUpdated.age = age;
+  }
+  res.send(userToBeUpdated);
+});
+
 export default router;
